@@ -19,7 +19,6 @@ def creditos():
         "Desarrollado por:",
         "ING(c)",
         "Stiven Castro Soto",
-        "Santiago Suaza",
         "",
         "Música por:",
         "kopinkop",
