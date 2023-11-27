@@ -1,7 +1,16 @@
+'''
+Juego mage's quest creditos
+fecha:20/11/23
+version: 2
+autores: ING(c): Stiven Castro Soto, Santiago Suaza Builes
+'''
 import pygame
 
 # Función para mostrar los créditos desplazándose hacia arriba desde la parte inferior de la pantalla
 def creditos():
+    """
+    Función que muestra la pantalla de creditos del juego.
+    """
     ancho_ventana = 800
     alto_ventana = 600  
     ventana = pygame.display.set_mode((ancho_ventana, alto_ventana))

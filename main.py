@@ -1,54 +1,53 @@
+'''
+Juego mage's quest main
+fecha:20/11/23
+version: 2
+autores: ING(c): Stiven Castro Soto, Santiago Suaza Builes
+'''
 import pygame 
 import sys
 import levels
 
 def help():
+    """
+    Función que muestra la pantalla de ayuda.
+    """
     pygame.init()
-    #quiero una imagen de fondo para la screen
-    fondo = pygame.image.load("imagenes\\help.png")
-    #quiero que la pantalla se adapte a la imagen
-    screen = pygame.display.set_mode(fondo.get_size())
-    screen.blit(fondo, (0, 0))
-    pygame.display.set_caption("help")
+    fondo = pygame.image.load("imagenes\\help.png")  # Carga la imagen de fondo
+    screen = pygame.display.set_mode(fondo.get_size())  # Ajusta la pantalla al tamaño de la imagen
+    screen.blit(fondo, (0, 0))  # Muestra la imagen en la pantalla
+    pygame.display.set_caption("help")  # Establece el título de la ventana
     clock = pygame.time.Clock()
     runing = True
     while runing:
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT or event.type == pygame.KEYDOWN:
-                runing = False
+                runing = False  # Sale del bucle si se cierra la ventana o se presiona una tecla
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
-                if pos[0] >= 164 and pos[0] <= 441:
-                    if pos[1] >= 441 and pos[1] <= 530:
-                        menu()
-                    
-
-            
+                # Verifica la posición del clic y llama al menú si se hace clic en una cierta área
+                if 164 <= pos[0] <= 441 and 441 <= pos[1] <= 530:
+                    menu()
         clock.tick(60)
         pygame.display.update()
-
     pygame.quit() 
 
 def menu():
+    """
+    Función que muestra el menú principal del juego.
+    """
     pygame.init()
-    #quiero una imagen de fondo para la screen
-    fondo = pygame.image.load("imagenes\\menu.png")
-    #quiero que la pantalla se adapte a la imagen
-    screen = pygame.display.set_mode(fondo.get_size())
-    screen.blit(fondo, (0, 0))
-    pygame.display.set_caption("mages quest menu")
+    fondo = pygame.image.load("imagenes\\menu.png")  # Carga la imagen de fondo
+    screen = pygame.display.set_mode(fondo.get_size())  # Ajusta la pantalla al tamaño de la imagen
+    screen.blit(fondo, (0, 0))  # Muestra la imagen en la pantalla
+    pygame.display.set_caption("mages quest menu")  # Establece el título de la ventana
     clock = pygame.time.Clock()
     pygame.mixer.init()
-    # Cargar la canción
-    pygame.mixer.music.load('sonidos\\rock.wav')  # Reemplaza con la ruta de tu canción
-    # Reproducir la canción en bucle
-    pygame.mixer.music.play(-1)
-    pygame.mixer.music.set_volume(0.4)
+    pygame.mixer.music.load('sonidos\\rock.wav')  # Carga la música de fondo
+    pygame.mixer.music.play(-1)  # Reproduce la música en bucle
+    pygame.mixer.music.set_volume(0.4)  # Establece el volumen de la música
     runing = True
-    white = (255, 255, 255)  # Color blanco
     while runing:
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 runing = False
@@ -56,50 +55,47 @@ def menu():
                 pos = pygame.mouse.get_pos()
                 x = pos[0]
                 y = pos[1]
-                if x >= 133 and x <= 471:
-                    if y >= 255 and y <= 342:
+                # Verifica la posición del clic y realiza acciones según el área clicada
+                if 133 <= x <= 471:
+                    if 255 <= y <= 342:
                         pygame.mixer.music.stop()
                         help()
-                    if y >= 371 and y <= 461:
+                    if 371 <= y <= 461:
                         pygame.mixer.music.stop()
                         levels.level_01()
-                    if y >= 482 and y <= 565:
+                    if 482 <= y <= 565:
                         print("exit")
-                        runing = False
-            
+                        runing = False  # Sale del bucle al seleccionar salir
         clock.tick(60)
         pygame.display.update()
-
     pygame.quit()
 
 def main():
+    """
+    Función principal que muestra la pantalla de inicio del juego.
+    """
     pygame.init()
-    #fondo de la screen
-    fondo = pygame.image.load("imagenes\\inicio.png")
-    #la screen se adapta a la imagen
-    screen = pygame.display.set_mode(fondo.get_size())
-    screen.blit(fondo, (0, 0))
+    fondo = pygame.image.load("imagenes\\inicio.png")  # Carga la imagen de fondo
+    screen = pygame.display.set_mode(fondo.get_size())  # Ajusta la pantalla al tamaño de la imagen
+    screen.blit(fondo, (0, 0))  # Muestra la imagen en la pantalla
     pygame.mixer.init()
-    # Cargar la canción
-    pygame.mixer.music.load('sonidos\\Calling A Hero.mp3')  # Reemplaza con la ruta de tu canción
-    # Reproducir la canción en bucle
-    pygame.mixer.music.play(-1)
-    pygame.mixer.music.set_volume(0.4)
-    pygame.display.set_caption("mages quest")
+    pygame.mixer.music.load('sonidos\\Calling A Hero.mp3')  # Carga la música de fondo
+    pygame.mixer.music.play(-1)  # Reproduce la música en bucle
+    pygame.mixer.music.set_volume(0.4)  # Establece el volumen de la música
+    pygame.display.set_caption("mages quest")  # Establece el título de la ventana
     clock = pygame.time.Clock()
     runing = True
     while runing:
         for event in pygame.event.get():
             if event.type == pygame.QUIT or event.type == pygame.KEYDOWN:
-                runing = False
+                runing = False  # Sale del bucle si se cierra la ventana o se presiona una tecla
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     pygame.mixer.music.stop()
-                    menu()
+                    menu()  # Llama al menú principal al presionar la tecla "Enter"
         clock.tick(60)
         pygame.display.update()
-
     pygame.quit()
 
 if __name__ == '__main__':
-    main()
+    main()  # Inicia la función principal si este archivo es ejecutado directamente

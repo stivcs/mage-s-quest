@@ -1,3 +1,9 @@
+'''
+Juego mage's quest levels
+fecha:20/11/23
+version: 2
+autores: ING(c): Stiven Castro Soto, Santiago Suaza Builes
+'''
 import pygame
 from clases import *
 
@@ -12,6 +18,16 @@ pygame.mixer.init()
 level_complete = pygame.mixer.Sound('sonidos\\gmae.wav')
 
 def manejar_eventos(prota, ataque):
+    """
+    Maneja los eventos del juego.
+
+    Parámetros:
+    prota (Protagonista): El personaje principal del juego.
+    ataque (Ataque): El ataque del personaje principal.
+
+    Salida:
+    bool: Valor que indica si el juego sigue en ejecución.
+    """
     runing = True
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -33,6 +49,15 @@ def manejar_eventos(prota, ataque):
     return runing
 
 def level_01():
+    """
+    Primer nivel del juego.
+
+    Parámetros:
+    Ninguno
+
+    Salida:
+    None
+    """
     pygame.init()
     pygame.mixer.init()
     # Cargar la canción
@@ -88,6 +113,15 @@ def level_01():
     pygame.quit()
 
 def level_02(prota):
+    """
+    Segundo nivel del juego.
+
+    Parámetros:
+    prota (Protagonista): El personaje principal del juego.
+
+    Salida:
+    None
+    """
     pygame.init()
     clock = pygame.time.Clock()
     runing = True
@@ -137,6 +171,15 @@ def level_02(prota):
     pygame.quit()
 
 def level_03(prota):
+    """
+    Tercer nivel del juego.
+
+    Parámetros:
+    prota (Protagonista): El personaje principal del juego.
+
+    Salida:
+    None
+    """
     pygame.init()
     clock = pygame.time.Clock()
     runing = True
@@ -204,6 +247,15 @@ def level_03(prota):
     pygame.quit()
 
 def level_04(prota):
+    """
+    Cuarto nivel del juego.
+
+    Parámetros:
+    prota (Protagonista): El personaje principal del juego.
+
+    Salida:
+    None
+    """
     pygame.init()
     clock = pygame.time.Clock()
     runing = True
@@ -277,6 +329,15 @@ def level_04(prota):
     pygame.quit()
 
 def level_05(prota):
+    """
+    Quinto nivel del juego.
+
+    Parámetros:
+    prota (Protagonista): El personaje principal del juego.
+
+    Salida:
+    None
+    """
     pygame.init()
     clock = pygame.time.Clock()
     runing = True

@@ -1,3 +1,9 @@
+'''
+Juego mage's quest clases
+fecha:20/11/23
+version: 2
+autores: ING(c): Stiven Castro Soto, Santiago Suaza Builes
+'''
 import pygame 
 import sys
 import random
@@ -5,6 +11,36 @@ from funciones import *
 
 
 class Protagonista():
+    """
+    Clase que representa al personaje protagonista del juego.
+
+    Attributes:
+        image: Imagen del protagonista.
+        x: Coordenada X del protagonista.
+        y: Coordenada Y del protagonista.
+        velocidad_X: Velocidad en el eje X.
+        vida: Puntos de vida del protagonista.
+        ataque: Valor de ataque del protagonista.
+        move: Valor que controla el movimiento del personaje.
+        dir: Dirección del personaje (0 hacia la derecha, 1 hacia la izquierda).
+        y_inicial: Posición inicial en Y.
+        saltando: Indica si el personaje está saltando.
+        velocidad_Y: Velocidad en el eje Y.
+        altura_salto: Altura máxima del salto.
+        gravedad: Valor de la gravedad para el salto.
+
+    Methods:
+        draw(ventana): Dibuja al protagonista en la ventana.
+        saltar(): Realiza el salto del protagonista.
+        actualizar(): Actualiza la posición del protagonista.
+        derecha(): Mueve al protagonista hacia la derecha.
+        izquierda(): Mueve al protagonista hacia la izquierda.
+        detener(): Detiene el movimiento del protagonista.
+        mostrar_vida(ventana): Muestra la barra de vida del protagonista.
+        dire(): Retorna la dirección del protagonista.
+        impacto(obj): Verifica si hay impacto con otro objeto.
+        reset(): Reinicia los atributos del protagonista.
+    """
     def __init__(self):
         self.image = movimientos_personajes('imagenes\\personajes\\protagonista1.png',65,94)
         self.x = 0
@@ -128,6 +164,27 @@ class Protagonista():
         self.dir = 0
 
 class BolaFuego:
+    """
+    Clase que representa una bola de fuego.
+
+    Attributes:
+        x: Coordenada X de la bola de fuego.
+        y: Coordenada Y de la bola de fuego.
+        dir: Dirección de la bola de fuego.
+        vel: Velocidad de la bola de fuego.
+        bulletImg: Imagen de la bola de fuego.
+        width: Ancho de la bola de fuego.
+        heigth: Alto de la bola de fuego.
+        state: Estado actual de la bola de fuego (listo o en fuego).
+        damage: Daño causado por la bola de fuego.
+        sonido: Sonido de la bola de fuego.
+
+    Methods:
+        draw(ventana): Dibuja la bola de fuego en la ventana.
+        fire(x, y, n): Dispara la bola de fuego desde una posición.
+        move(): Mueve la bola de fuego en su trayectoria.
+        reset(): Reinicia los atributos de la bola de fuego.
+    """
     def __init__(self,x=0,y=1000):
         pygame.mixer.init()
         self.x = x
@@ -168,6 +225,18 @@ class BolaFuego:
         self.state = "ready"
 
 class BolaTierra(BolaFuego):
+    """
+    Clase que representa una bola de tierra en el juego.
+
+    Inherits:
+        BolaFuego
+    
+    Attributes:
+        Hereda todos los atributos de BolaFuego.
+
+    Methods:
+        No agrega nuevos métodos, utiliza los de BolaFuego.
+    """
     def __init__(self,x=0,y=1000):
         super().__init__(x,y)
         self.sonido = pygame.mixer.Sound("sonidos\\30_Earth_02.wav")
@@ -175,6 +244,18 @@ class BolaTierra(BolaFuego):
         self.damage = 8
 
 class IceAttack(BolaFuego):
+    """
+    Clase que representa un ataque de hielo en el juego.
+
+    Inherits:
+        BolaFuego
+    
+    Attributes:
+        Hereda todos los atributos de BolaFuego.
+
+    Methods:
+        draw(ventana): Dibuja el ataque de hielo en la ventana.
+    """
     def __init__(self,x=0,y=1000):
         super().__init__(x,y)
         self.sonido = pygame.mixer.Sound("sonidos\\13_Ice_explosion_01.wav")
@@ -188,6 +269,20 @@ class IceAttack(BolaFuego):
         ventana.blit(image,(self.x,self.y))
 
 class VerticalAttack(IceAttack):
+    """
+    Clase que representa un ataque vertical en el juego.
+
+    Inherits:
+        IceAttack
+    
+    Attributes:
+        Hereda todos los atributos de IceAttack.
+
+    Methods:
+        draw(ventana): Dibuja el ataque vertical en la ventana.
+        fire(x, y): Dispara el ataque vertical desde la posición especificada en las coordenadas x e y.
+        move(): Controla el movimiento del ataque vertical.
+    """
     def __init__(self,x=0,y=1000):
         super().__init__(x,y)
         self.sonido = pygame.mixer.Sound("sonidos\\13_Ice_explosion_01.wav")
@@ -214,6 +309,41 @@ class VerticalAttack(IceAttack):
             self.reset()
     
 class Villano:
+    """
+    Clase que representa a un villano en el juego.
+
+    Attributes:
+        width (int): Ancho del villano.
+        height (int): Alto del villano.
+        image (pygame.Surface): Imagen del villano.
+        x (int): Posición en el eje X.
+        y (int): Posición en el eje Y.
+        velocidad_X (int): Velocidad en el eje X.
+        velocidad_Y (int): Velocidad en el eje Y.
+        max_altura (int): Altura máxima permitida para el vuelo.
+        max_lateral (int): Límite de movimiento lateral izquierdo.
+        min_lateral (int): Límite de movimiento lateral derecho.
+        vida (int): Puntos de vida del villano.
+        damage (int): Poder de ataque del villano.
+        move (int): Movimiento actual del villano.
+        dir (int): Dirección del villano (0 hacia la derecha, 1 hacia la izquierda).
+        y_inicial (int): Posición inicial en el eje Y.
+        saltando (bool): Indica si el villano está saltando.
+        altura_salto (int): Altura máxima del salto.
+        gravedad (int): Gravedad aplicada al salto.
+        tiempo_ultimo_salto (int): Tiempo del último salto.
+        tiempo_ultimo_ataque (int): Tiempo del último ataque.
+        state (str): Estado actual del villano ("alive" o "dead").
+
+    Methods:
+        draw(ventana): Dibuja al villano en la ventana.
+        saltar(): Realiza el salto del villano.
+        atacar(bola_tierra, bola2): Realiza el ataque del villano.
+        actualizar(): Actualiza la posición del villano.
+        impacto(obj): Verifica si hay un impacto con otro objeto y actualiza la vida del villano.
+        mostrar_vida(ventana): Muestra la barra de vida del villano en la ventana.
+        reset(): Reinicia las características del villano.
+    """
     def __init__(self):
         self.width = 117
         self.heigth = 80
@@ -347,6 +477,29 @@ class Villano:
         self.dir = 1
     
 class villanoHielo(Villano):
+    """
+    Representa a un villano tipo 'Hielo' en el juego.
+
+    Inherits:
+        Villano
+
+    Attributes:
+        width (int): Ancho del villano de hielo.
+        heigth (int): Altura del villano de hielo.
+        image (Surface): Imagen del villano de hielo.
+        vida (int): Puntos de vida del villano de hielo.
+        damage (int): Daño que el villano de hielo puede infligir.
+        tiempo_ultimo_ataque (int): Tiempo del último ataque del villano de hielo.
+        altura_salto (int): Altura máxima del salto del villano de hielo.
+        max_altura (int): Altura máxima permitida para el vuelo del villano de hielo.
+        max_lateral (int): Límite de movimiento lateral izquierdo del villano de hielo.
+        state (str): Estado actual del villano de hielo ('alive' o 'dead').
+
+    Methods:
+        draw(ventana): Dibuja al villano de hielo en la ventana.
+        actualizar(): Actualiza la posición y estado del villano de hielo.
+        reset(): Reinicia las propiedades del villano de hielo.
+    """
     def __init__(self):
         super().__init__()
         self.width = 77
@@ -396,6 +549,30 @@ class villanoHielo(Villano):
         self.velocidad_X = -3
    
 class VillanoFinal(Villano):
+    """
+    Representa al villano final en el juego.
+
+    Inherits:
+        Villano
+
+    Attributes:
+        width (int): Ancho del villano final.
+        heigth (int): Altura del villano final.
+        image (Surface): Imagen del villano final.
+        vida (int): Puntos de vida del villano final.
+        damage (int): Daño que el villano final puede infligir.
+        tiempo_ultimo_ataque (int): Tiempo del último ataque del villano final.
+        altura_salto (int): Altura máxima del salto del villano final.
+        max_altura (int): Altura máxima permitida para el vuelo del villano final.
+        max_lateral (int): Límite de movimiento lateral izquierdo del villano final.
+        state (str): Estado actual del villano final ('alive' o 'dead').
+
+    Methods:
+        draw(ventana): Dibuja al villano final en la ventana.
+        actualizar(): Actualiza la posición y estado del villano final.
+        reset(): Reinicia las propiedades del villano final.
+        atacar(ataques, bola2): Realiza ataques especiales del villano final.
+    """
     def __init__(self):
         super().__init__()
         self.width = 122
