@@ -27,9 +27,12 @@ def creditos():
     texto_creditos = [
         "Desarrollado por:",
         "ING(c)",
+        "" ,
         "Stiven Castro Soto",
+        "Santiago Suaza Builes",
         "",
         "Música por:",
+        "",
         "kopinkop",
         "audiogarden",
         "Motion Array Originals: Classics",
