@@ -75,7 +75,7 @@ def level_01():
     ataqueProtagonista = BolaFuego()
     ataqueVillano = BolaTierra()
     villano = Villano()
-    # mensaje_inicial(screen,fondo)
+    mensaje_inicial(screen,fondo)
 
     while runing:
         runing = manejar_eventos(prota, ataqueProtagonista)
