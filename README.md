@@ -46,11 +46,7 @@ To deploy this project run
 - [thomaswp](https://opengameart.org/users/thomaswp)
 - [reivaxcorp](https://opengameart.org/users/reivaxcorp)
 - [Ramandu](https://opengameart.org/users/ramandu)
-## FAQ
 
-#### has copyright
-
-This game is an open source project and all resources used belong to their respective authors.
 
 
 
